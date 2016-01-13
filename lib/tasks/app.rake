@@ -1,5 +1,4 @@
 # Tasks for managing incoming data from collectionspace
-require 'awesome_print'
 require 'tempfile'
 
 def puts_and_log(log, message)

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'awesome_print', require: false
+gem 'awesome_print', require: "ap"
 gem 'collectionspace-client', '~> 0.1.0', path: '../collectionspace-client'
 
 gem 'rails', '4.2.5'
