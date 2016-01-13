@@ -1,0 +1,10 @@
+<h1>CollectionObjects#show</h1>
+<p>Find me in app/views/collection_objects/show.html.erb</p>
+
+<% if @collectionobject.has_remote_image? %>
+  <img src="data:<%= @collectionobject.thumbnail_content_type %>>;base64,<%= @collectionobject.remote_image %>"/>
+<% else %>
+  <%= image_tag(@collectionobject.thumbnail(:small)) %>
+<% end %>
+
+<%= link_to @collectionobject.object_number, record_path(@collectionobject) %>

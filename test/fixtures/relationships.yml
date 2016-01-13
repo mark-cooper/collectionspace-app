@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject_csid: MyString
+  subject_type: MyString
+  subject_uri: MyString
+  object_csid: MyString
+  object_type: MyString
+  object_uri: MyString
+
+two:
+  subject_csid: MyString
+  subject_type: MyString
+  subject_uri: MyString
+  object_csid: MyString
+  object_type: MyString
+  object_uri: MyString

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  field: MyString
+  key: MyString
+  nested_key: MyString
+  with: MyString
+
+two:
+  type: 
+  field: MyString
+  key: MyString
+  nested_key: MyString
+  with: MyString
