@@ -24,16 +24,10 @@ class CollectionObject < ActiveRecord::Base
   )
 
   def has_been_updated?
-    result  = COLLECTIONSPACE_CLIENT.get(uri)
-    updated = false
-    if result.status_code == 200
-      attribute_map = AttributeMap.where(record_type: 'collectionobject')
-      record        = result.parsed
-      attributes    = COLLECTIONSPACE_CLIENT.to_object(record, attribute_map)
-      updated       = attributes['updated_at'] > updated_at
-    else
-      raise "Error connecting to backend for #{uri}"
-    end
+    metadata      = remote_metadata
+    attribute_map = AttributeMap.where(record_type: 'collectionobject')
+    attributes    = COLLECTIONSPACE_CLIENT.to_object(metadata, attribute_map)
+    updated       = attributes['updated_at'] > updated_at ? true : false
     updated
   end
 
@@ -45,6 +39,12 @@ class CollectionObject < ActiveRecord::Base
     raise "Record has no associated media." unless has_remote_image?
     Rails.cache.fetch("#{cache_key}/remote_image", expires_in: 24.hours) do
       Base64.encode64(COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/Small/content").body)
+    end
+  end
+
+  def remote_metadata
+    Rails.cache.fetch("#{cache_key}/remote_metadata", expires_in: 30.seconds) do
+      COLLECTIONSPACE_CLIENT.get(uri).parsed
     end
   end
 
