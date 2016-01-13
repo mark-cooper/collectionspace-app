@@ -1,10 +1,6 @@
 # Tasks for managing incoming data from collectionspace
 require 'tempfile'
-
-def puts_and_log(log, message)
-  log.info message
-  puts message.green
-end
+require 'timed_logger'
 
 namespace :app do
   
@@ -25,13 +21,14 @@ namespace :batch do
     # bundle exec rake batch:import:api
     desc "Import records via remote api connection"
     task :api, [:record_type, :path, :key, :since] => :environment do |t, args|
-      log         = ActiveSupport::Logger.new('log/batch_import_api.log')
       record_type = args[:record_type] || 'CollectionObject'
       klass       = record_type.camelize.constantize
       rtype       = record_type.downcase
       path        = args[:path]  || "collectionobjects"
       key         = args[:key]   || "object_number"
       since       = args[:since] || Date.yesterday
+      log         = TimedLogger.new('batch_import_api')
+      log.start
 
       attribute_map = AttributeMap.where(record_type: rtype).as_json
       # TODO: abort if attribute map not found
@@ -45,9 +42,6 @@ namespace :batch do
       query = CollectionSpace::Search.new.from_hash search_args
       # TODO: check search result status first.
 
-      start_time = Time.now
-      puts_and_log log, "Import for #{path} updated since #{since} started at #{start_time}"
-
       COLLECTIONSPACE_CLIENT.search_all(query) do |item|
         record     = COLLECTIONSPACE_CLIENT.get(item["uri"]).parsed
         attributes = COLLECTIONSPACE_CLIENT.to_object(record, attribute_map)
@@ -57,11 +51,11 @@ namespace :batch do
 
         if object
           object.update(attributes)
-          puts_and_log log, "Updated:\t#{attributes[key]}"
+          log.info "Updated:\t#{attributes[key]}"
         else
           klass.create(attributes)
           object = klass.where(key.to_sym => attributes[key]).first
-          puts_and_log log, "Created:\t#{attributes[key]}"
+          log.info "Created:\t#{attributes[key]}"
         end
 
         # PROCESS RELATED MEDIA
@@ -77,16 +71,13 @@ namespace :batch do
             tmp_file.rewind
             object.thumbnail = tmp_file
             tmp_file.unlink
-            puts_and_log log, "Thumbnail:\t#{attributes[key]}"
+            log.info "Thumbnail:\t#{attributes[key]}"
           end
         end
         object.save
       end
 
-      end_time = Time.now
-      duration = (start_time - end_time) / 1.minute
-      puts_and_log log, "Import finished at #{end_time} and lasted for #{duration} minutes."
-      log.close
+      log.stop
     end
 
     # bundle exec rake batch:import:csv[records.csv]
@@ -111,7 +102,9 @@ namespace :batch do
     # bundle exec rake batch:related_media:sync
     desc "Import collectionobject and media relationships data"
     task :sync => :environment do
-      log = ActiveSupport::Logger.new('log/related_media_sync.log')
+      log = TimedLogger.new('related_media_sync')
+      log.start
+
       # Blow away all existing relationship data
       Relationship.delete_all
       ActiveRecord::Base.connection.reset_pk_sequence!('relationships')
@@ -123,8 +116,9 @@ namespace :batch do
           attributes[map["field"]] = record[map["key"]][map["nested_key"]]
         end
         Relationship.create attributes
-        puts_and_log log, "Created:\t#{attributes['subject_type']} (#{attributes['subject_csid']}) #{attributes['object_type']} (#{attributes['object_csid']})"
+        log.info "Created:\t#{attributes['subject_type']} (#{attributes['subject_csid']}) #{attributes['object_type']} (#{attributes['object_csid']})"
       end
+      log.stop
     end
 
   end
