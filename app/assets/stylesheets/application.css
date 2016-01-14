@@ -68,17 +68,17 @@ body {
   padding-top: 2em;
 }
 
-.records p + h4 {
-  margin-top: 28px;
-}
-
 .records-row {
-  min-height: 175px;
+  min-height: 200px;
   padding-top: 2em;
   border-top: 1px dotted #e5e5e5;
   border-left: 1px dotted #e5e5e5;
   border-right: 1px dotted #e5e5e5;
   border-collapse: collapse;
+}
+
+.record-attributes, .refresh {
+  margin-left: 2em;
 }
 
 .search-terms {
