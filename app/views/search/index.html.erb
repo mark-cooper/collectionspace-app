@@ -1,0 +1,17 @@
+<div class="container-fluid row search">
+  <%= render 'site/search' %>
+</div>
+<h3 class="text-center">Search results</h3>
+<% if @collectionobjects.count == 0 %>
+<div class="container-fluid row records">
+  <div class="col-md-12">
+    <p class="lead text-center">No results found.</p>
+  </div>
+</div>
+<% else %>
+<div class="container-fluid row records">
+  <%= render 'collection_objects/records' %>
+</div>
+<% end %>
+<br/>
+<%= button_to "Return", root_path, method: 'get', class: "btn btn-primary" %>

@@ -1,16 +1,11 @@
-<form class="form-inline">
+<%= form_tag("/search", method: "get", class: 'form-inline') do %>
   <div class="form-group">
-    <select class="form-control">
-      <option value="all" selected="true">Search all fields</option>
-      <% @attribute_map.each do |attribute| %>
-        <option value="<%= attribute.field %>"><%= t "collectionobject.#{attribute.field}" %></option>
-      <% end %>
-    </select>
+    <%= select_tag(:field, options_for_select(@attribute_map.collect{ |a| [t("collectionobject.#{a.field}"), a.field] }.unshift([ "All", "all" ])), class: 'form-control') %>
   </div>
   <div class="form-group">
     <div class="input-group">
-      <input type="text" class="form-control search-terms" placeholder="Enter search terms ...">
+      <%= text_field_tag(:query, nil, placeholder: query_placeholder_text, class: "form-control search-terms") %>
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<% end %>

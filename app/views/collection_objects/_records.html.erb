@@ -5,7 +5,7 @@
       <div class="col-md-6">
         <dl>
           <dt><%= t 'collectionobject.object_number' %></dt>
-          <dd><%= link_to record.object_number, record_path(record) %></dd>
+          <dd><%= link_to record.object_number, record_path(record), class: "lead" %></dd>
           <dt><%= t 'collectionobject.title' %></dt>
           <dd><%= record.title %></dd>
         </dl>
