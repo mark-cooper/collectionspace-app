@@ -24,10 +24,8 @@ class CollectionObject < ActiveRecord::Base
   )
 
   def has_been_updated?
-    metadata      = remote_metadata
-    attribute_map = AttributeMap.where(record_type: 'collectionobject')
-    attributes    = COLLECTIONSPACE_CLIENT.to_object(metadata, attribute_map)
-    updated       = attributes['updated_at'] > updated_at ? true : false
+    attributes = remote_metadata_attributes
+    updated    = attributes['origin_updated_at'] > origin_updated_at ? true : false
     updated
   end
 
@@ -46,6 +44,13 @@ class CollectionObject < ActiveRecord::Base
     Rails.cache.fetch("#{cache_key}/remote_metadata", expires_in: 30.seconds) do
       COLLECTIONSPACE_CLIENT.get(uri).parsed
     end
+  end
+
+  def remote_metadata_attributes
+    metadata      = remote_metadata
+    attribute_map = AttributeMap.where(record_type: 'collectionobject')
+    attributes    = COLLECTIONSPACE_CLIENT.to_object(metadata, attribute_map)
+    attributes
   end
 
   def slug_object_number

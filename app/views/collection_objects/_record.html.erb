@@ -1,0 +1,23 @@
+<div class="col-md-12 record-row">
+  <%= render 'site/flash' %>
+  <div class="row record-image">
+    <div class="col-md-6 col-md-push-6">
+      <% if @collectionobject.has_remote_image? %>
+        <img class="pull-right img-responsive img-thumbnail" src="data:<%= @collectionobject.thumbnail_content_type %>>;base64,<%= @collectionobject.remote_image %>"/>
+      <% else %>
+        <%= image_tag @collectionobject.thumbnail(:small), class: 'pull-right' %>
+      <% end %>
+    </div>
+    <div class="col-md-6 col-md-pull-6 record-detail">
+      <h1><%= @collectionobject.object_number %><%= link_to "Refresh", { action: "update", id: @collectionobject.slug }, method: :put, class: "btn btn-info refresh" %></h1>
+      <h3>Record details</h3>
+      <dl class="dl-horizontal record-attributes">
+        <% @attribute_map.each do |attribute| %>
+          <dt><%= t "collectionobject.#{attribute}" %></dt>
+          <dd><%= @collectionobject.send(attribute.to_sym) %></dd>
+        <% end %>
+      </dl>
+      <%= button_to "Return", root_path, method: 'get', class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <% @collectionobjects.each_slice(2) do |records| %>
   <% records.each do |record| %>
   <div class="col-md-6 records-row">
-    <div class="row record-details">
+    <div class="row records-detail">
       <div class="col-md-6">
         <dl>
           <dt><%= t 'collectionobject.object_number' %></dt>
@@ -11,7 +11,7 @@
         </dl>
       </div>
       <div class="col-md-6">
-        <%= link_to image_tag(record.thumbnail.url, class: 'thumbnail pull-right'), record_path(record) %>
+        <%= link_to image_tag(record.thumbnail.url, class: 'pull-right img-responsive img-thumbnail'), record_path(record) %>
       </div>
     </div>
   </div>
