@@ -31,9 +31,9 @@ ATTRIBUTE_MAP = [
   { record_type: 'collectionobject', field: 'object_production_person_group', key: 'collectionobjects_common', nested_key: 'objectProductionPersonGroup', with: 'objectProductionPerson', searchable: true },
   { record_type: 'collectionobject', field: 'ref_name', key: 'collectionspace_core', nested_key: 'refName', with: nil, searchable: false },
   { record_type: 'collectionobject', field: 'uri', key: 'collectionspace_core', nested_key: 'uri', with: nil, searchable: false },
-  { record_type: 'collectionobject', field: 'created_by', key: 'collectionspace_core', nested_key: 'createdBy', with: nil, searchable: true },
-  { record_type: 'collectionobject', field: 'created_at', key: 'collectionspace_core', nested_key: 'createdAt', with: nil, searchable: false },
-  { record_type: 'collectionobject', field: 'updated_at', key: 'collectionspace_core', nested_key: 'updatedAt', with: nil, searchable: false },
+  { record_type: 'collectionobject', field: 'origin_created_by', key: 'collectionspace_core', nested_key: 'createdBy', with: nil, searchable: true },
+  { record_type: 'collectionobject', field: 'origin_created_at', key: 'collectionspace_core', nested_key: 'createdAt', with: nil, searchable: false },
+  { record_type: 'collectionobject', field: 'origin_updated_at', key: 'collectionspace_core', nested_key: 'updatedAt', with: nil, searchable: false },
 ]
 
 ATTRIBUTE_MAP.each do |map|

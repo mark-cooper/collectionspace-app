@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(version: 20160107231514) do
     t.string   "object_production_person_group",       default: [],              array: true
     t.string   "ref_name",                                          null: false
     t.string   "uri",                                               null: false
-    t.string   "created_by",                                        null: false
+    t.string   "origin_created_by",                                 null: false
+    t.string   "origin_created_at",                                 null: false
+    t.string   "origin_updated_at",                                 null: false
     t.string   "blob_url"
     t.string   "slug"
     t.datetime "created_at",                                        null: false
