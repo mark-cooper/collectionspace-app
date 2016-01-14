@@ -1,0 +1,16 @@
+<form class="form-inline">
+  <div class="form-group">
+    <select class="form-control">
+      <option value="all" selected="true">Search all fields</option>
+      <% @attribute_map.each do |attribute| %>
+        <option value="<%= attribute.field %>"><%= t "collectionobject.#{attribute.field}" %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <input type="text" class="form-control search-terms" placeholder="Enter search terms ...">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>

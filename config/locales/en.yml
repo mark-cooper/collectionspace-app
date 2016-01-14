@@ -22,6 +22,7 @@
 en:
   collectionobject:
     object_name: Object Name
+    object_number: Object Number
   relationship:
     subject_csid: Subject CSID
     subject_type: Subject Type

@@ -3,7 +3,7 @@ class CollectionObject < ActiveRecord::Base
   extend FriendlyId
 
   friendly_id :slug_object_number, use: [:slugged, :finders]
-  has_attached_file :thumbnail, default_url: '/images/:style/placeholder.png'
+  has_attached_file :thumbnail, default_url: "/images/:style/placeholder.png"
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
 
   pg_search_scope(
