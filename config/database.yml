@@ -85,6 +85,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['COLLECTIONSPACE-APP_DATABASE_HOST'] %>
   database: <%= ENV['COLLECTIONSPACE-APP_DATABASE_NAME'] %>
   username: <%= ENV['COLLECTIONSPACE-APP_DATABASE_USERNAME'] %>
   password: <%= ENV['COLLECTIONSPACE-APP_DATABASE_PASSWORD'] %>
