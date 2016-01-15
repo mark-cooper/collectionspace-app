@@ -2,6 +2,8 @@ class CollectionObject < ActiveRecord::Base
   include PgSearch
   extend FriendlyId
 
+  before_save :set_title
+
   friendly_id :slug_object_number, use: [:slugged, :finders]
   has_attached_file :thumbnail, default_url: "/images/:style/placeholder.png"
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
@@ -55,5 +57,11 @@ class CollectionObject < ActiveRecord::Base
 
   def slug_object_number
     object_number.gsub(/\./, '-')
+  end
+
+  private
+
+  def set_title
+    self.title ||= "Untitled"
   end
 end
