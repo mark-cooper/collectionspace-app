@@ -6,14 +6,10 @@ Consumes and presents data from a [CollectionSpace](http://www.collectionspace.o
 Development
 ---
 
-To get started run a local instance of PostgreSQL:
+To get started run a local instance of PostgreSQL (docker + compose example):
 
 ```bash
-docker run --name postgres -d \
-  --net=host \
-  -e POSTGRES_PASSWORD=654321 \
-  -e DB_CSADMIN_PASSWORD=123456 \
-  lyrasis/collectionspace:db
+docker-compose run -d db
 ```
 
 Then:
@@ -65,6 +61,7 @@ Docker
 
 ```bash
 docker-compose run -d db
+docker-compose run -d web
 docker-compose run app1 bundle exec rake db:setup
 docker-compose run -d app1
 docker exec -it collectionspaceapp_app1_run_2 bundle exec rake batch:related_media:sync

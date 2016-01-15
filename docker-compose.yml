@@ -6,6 +6,13 @@ db:
     POSTGRES_PASSWORD: "654321"
     DB_CSADMIN_PASSWORD: "123456"
 
+web:
+  image: nginx:1.7.12
+  container_name: nginx
+  net: host
+  volumes:
+    - "/${PWD}/config/app1.conf:/etc/nginx/conf.d/default.conf"
+
 app1:
   build: .
   container_name: collectionspace-app-app1
