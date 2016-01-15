@@ -1,0 +1,27 @@
+<% @collectionobjects.each do |record| %>
+  <div class="col-md-12 records-row">
+    <div class="row records-result">
+      <div class="col-md-3">
+        <dl>
+          <dt><%= t 'collectionobject.object_number' %></dt>
+          <dd><%= link_to record.object_number, record_path(record), class: "lead" %></dd>
+        </dl>
+      </div>
+      <div class="col-md-3">
+        <dl>
+          <dt><%= t 'collectionobject.title' %></dt>
+          <dd><%= record.title %></dd>
+        </dl>
+      </div>
+      <div class="col-md-3">
+        <dl>
+          <dt><%= t 'collectionobject.origin_updated_at' %></dt>
+          <dd><%= record.origin_updated_at %></dd>
+        </dl>
+      </div>
+      <div class="col-md-3">
+        <%= link_to image_tag(record.thumbnail.url, class: 'pull-right img-responsive img-thumbnail'), record_path(record) %>
+      </div>
+    </div>
+  </div>
+<% end %>

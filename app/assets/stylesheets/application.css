@@ -81,6 +81,10 @@ body {
   margin-left: 2em;
 }
 
+.record {
+  padding-top: 0.5em;
+}
+
 .search-terms {
   min-width: 300px;
 }

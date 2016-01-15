@@ -1,12 +1,14 @@
 class CollectionObjectsController < ApplicationController
   def index
-    @collectionobjects = CollectionObject.order(origin_updated_at: :desc)
-    @attribute_map     = AttributeMap.where(record_type: 'collectionobject', searchable: true).order(:field)
+    @collectionobjects     = CollectionObject.order(origin_updated_at: :desc)
+    @searchable_attributes = AttributeMap.where(record_type: 'collectionobject', searchable: true).order(:field)
   end
 
   def show
-    @collectionobject = CollectionObject.find(params[:id])
-    @attribute_map    = AttributeMap.where(record_type: 'collectionobject').pluck(:field) # viewable true
+    @collectionobject      = CollectionObject.find(params[:id])
+    @attribute_map         = AttributeMap.where(record_type: 'collectionobject') # viewable true
+    @searchable_attributes = @attribute_map.where(searchable: true)
+    @viewable_fields       = @attribute_map.map{ |a| a["field"] } # viewable true
   end
 
   def update
