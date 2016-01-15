@@ -21,6 +21,10 @@ body {
   padding-bottom: 2em;
 }
 
+h3 {
+  color: #7B7C7D;
+}
+
 /* Everything but the content gets side spacing for mobile first views */
 .header,
 .records,
