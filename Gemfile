@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'awesome_print', require: "ap"
-gem 'collectionspace-client', '~> 0.1.0', path: '../collectionspace-client'
+gem 'collectionspace-client', '~> 0.1.0'
 
 gem 'rails', '4.2.5'
 gem 'pg', '~> 0.15'

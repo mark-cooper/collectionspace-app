@@ -1,11 +1,3 @@
-PATH
-  remote: ../collectionspace-client
-  specs:
-    collectionspace-client (0.1.0)
-      httparty
-      json
-      nokogiri
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -63,6 +55,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    collectionspace-client (0.1.0)
+      httparty
+      json
+      nokogiri
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
     erubis (2.7.0)
@@ -190,7 +186,7 @@ DEPENDENCIES
   awesome_print
   byebug
   coffee-rails (~> 4.1.0)
-  collectionspace-client (~> 0.1.0)!
+  collectionspace-client (~> 0.1.0)
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
   jquery-rails
