@@ -60,6 +60,17 @@ bundle exec rails s
 bundle exec rake tmp:cache:clear
 ```
 
+Docker
+---
+
+```bash
+docker-compose run -d db
+docker-compose run app1 bundle exec rake db:setup
+docker-compose run -d app1
+docker exec -it collectionspaceapp_app1_run_2 bundle exec rake batch:related_media:sync
+docker exec -it collectionspaceapp_app1_run_2 bundle exec rake batch:import:seed
+```
+
 Contributing
 ---
 
