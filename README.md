@@ -9,7 +9,7 @@ Development
 To get started run a local instance of PostgreSQL (docker + compose example):
 
 ```bash
-docker-compose run -d db
+docker-compose run --name postgres -d db
 ```
 
 Then:
@@ -60,12 +60,13 @@ Docker
 ---
 
 ```bash
-docker-compose run -d db
-docker-compose run -d web
-docker-compose run app1 bundle exec rake db:setup
-docker-compose run -d app1
-docker exec -it collectionspaceapp_app1_run_2 bundle exec rake batch:related_media:sync
-docker exec -it collectionspaceapp_app1_run_2 bundle exec rake batch:import:seed
+docker-compose run --name postgres -d db
+docker-compose run --name nginx -d web
+docker-compose run --name collectionspace-app-app1 app1 bundle exec rake db:setup
+docker rm collectionspace-app-app1
+docker-compose run --name collectionspace-app-app1 -d app1
+docker exec -it collectionspace-app-app1 bundle exec rake batch:related_media:sync
+docker exec -it collectionspace-app-app1 bundle exec rake batch:import:seed
 ```
 
 Contributing
