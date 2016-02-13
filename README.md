@@ -62,8 +62,7 @@ Docker
 ```bash
 docker-compose run --name postgres -d db
 docker-compose run --name nginx -d web
-docker-compose run --name collectionspace-app-app1 app1 bundle exec rake db:setup
-docker rm collectionspace-app-app1
+docker-compose run --name collectionspace-app-app1 --rm app1 bundle exec rake db:setup
 docker-compose run --name collectionspace-app-app1 -d app1
 docker exec -it collectionspace-app-app1 bundle exec rake batch:related_media:sync
 docker exec -it collectionspace-app-app1 bundle exec rake batch:import:seed
