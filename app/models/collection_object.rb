@@ -3,6 +3,7 @@ class CollectionObject < ActiveRecord::Base
   extend FriendlyId
 
   before_save :set_title
+  paginates_per 10
 
   friendly_id :slug_object_number, use: [:slugged, :finders]
   has_attached_file :thumbnail, default_url: "/images/:style/placeholder.png"

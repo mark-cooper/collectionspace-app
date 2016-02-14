@@ -1,6 +1,6 @@
 class CollectionObjectsController < ApplicationController
   def index
-    @collectionobjects     = CollectionObject.order(origin_updated_at: :desc)
+    @collectionobjects     = CollectionObject.order(origin_updated_at: :desc).page params[:page]
     @searchable_attributes = AttributeMap.where(record_type: 'collectionobject', searchable: true).order(:field)
   end
 

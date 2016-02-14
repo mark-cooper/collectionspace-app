@@ -8,6 +8,7 @@ gem 'pg', '~> 0.15'
 gem 'pg_search', '~> 1.0.5'
 gem "paperclip", "~> 4.3"
 gem 'friendly_id', '~> 5.1.0'
+gem 'kaminari', '~> 0.16.3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
