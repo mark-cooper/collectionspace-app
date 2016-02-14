@@ -6,9 +6,9 @@ class CollectionObjectsController < ApplicationController
 
   def show
     @collectionobject      = CollectionObject.find(params[:id])
-    @attribute_map         = AttributeMap.where(record_type: 'collectionobject') # viewable true
+    @attribute_map         = AttributeMap.where(record_type: 'collectionobject')
     @searchable_attributes = @attribute_map.where(searchable: true)
-    @viewable_fields       = @attribute_map.map{ |a| a["field"] } # viewable true
+    @viewable_fields       = @attribute_map.where(viewable: true).pluck(:field)
   end
 
   def update

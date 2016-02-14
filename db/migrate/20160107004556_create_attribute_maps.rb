@@ -7,6 +7,7 @@ class CreateAttributeMaps < ActiveRecord::Migration
       t.string  :nested_key, null: false
       t.string  :with
       t.boolean :searchable, default: false
+      t.boolean :viewable, default: false
 
       t.timestamps null: false
     end

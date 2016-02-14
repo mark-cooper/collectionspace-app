@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160107231514) do
     t.string   "nested_key",                  null: false
     t.string   "with"
     t.boolean  "searchable",  default: false
+    t.boolean  "viewable",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -46,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160107231514) do
     t.string   "object_production_person_group",       default: [],              array: true
     t.string   "ref_name",                                          null: false
     t.string   "uri",                                               null: false
-    t.string   "origin_created_by",                                 null: false
+    t.string   "origin_created_by"
     t.string   "origin_created_at",                                 null: false
     t.string   "origin_updated_at",                                 null: false
     t.string   "blob_url"
