@@ -49,32 +49,36 @@ namespace :batch do
         # create or update object
         object = klass.where(key.to_sym => attributes[key]).first
 
-        if object
-          object.update(attributes)
-          log.info "Updated:\t#{attributes[key]}"
-        else
-          klass.create(attributes)
-          object = klass.where(key.to_sym => attributes[key]).first
-          log.info "Created:\t#{attributes[key]}"
-        end
-
-        # PROCESS RELATED MEDIA
-        related = Relationship.where(subject_uri: attributes["uri"]).first
-        if related and object.respond_to?(:thumbnail) and !object.thumbnail.exists?
-          blob_url = "#{related[:object_uri]}/blob"
-          if COLLECTIONSPACE_CLIENT.get(blob_url).status_code == 200
-            object.blob_url = blob_url
-            thumbnail = COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/Thumbnail/content")
-            tmp_file  = Tempfile.new [ "#{attributes[key]}-", ".#{thumbnail.headers["content-type"].split("/")[1]}" ]
-            tmp_file.binmode
-            tmp_file.write thumbnail.body
-            tmp_file.rewind
-            object.thumbnail = tmp_file
-            tmp_file.unlink
-            log.info "Thumbnail:\t#{attributes[key]}"
+        begin
+          if object
+            object.update(attributes)
+            log.info "Updated:\t#{attributes[key]}"
+          else
+            klass.create(attributes)
+            object = klass.where(key.to_sym => attributes[key]).first
+            log.info "Created:\t#{attributes[key]}"
           end
+
+          # PROCESS RELATED MEDIA
+          related = Relationship.where(subject_uri: attributes["uri"]).first
+          if related and object.respond_to?(:thumbnail) and !object.thumbnail.exists?
+            blob_url = "#{related[:object_uri]}/blob"
+            if COLLECTIONSPACE_CLIENT.get(blob_url).status_code == 200
+              object.blob_url = blob_url
+              thumbnail = COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/Thumbnail/content")
+              tmp_file  = Tempfile.new [ "#{attributes[key]}-", ".#{thumbnail.headers["content-type"].split("/")[1]}" ]
+              tmp_file.binmode
+              tmp_file.write thumbnail.body
+              tmp_file.rewind
+              object.thumbnail = tmp_file
+              tmp_file.unlink
+              log.info "Thumbnail:\t#{attributes[key]}"
+            end
+          end
+          object.save
+        rescue Exception => ex
+          log.error "Error creating or updating:\t#{attributes[key]}\n#{ex.message}"
         end
-        object.save
       end
 
       log.stop
