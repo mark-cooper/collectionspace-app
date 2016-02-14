@@ -8,6 +8,11 @@ class TimedLogger
     @stop_time  = nil
   end
 
+  def error(message)
+    log.error message
+    puts message.red
+  end
+
   def info(message)
     log.info message
     puts message.green
