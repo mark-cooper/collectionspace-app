@@ -19,7 +19,7 @@ class CreateCollectionObjects < ActiveRecord::Migration
       t.string :object_production_person_group, array: true, default: []
       t.string :ref_name, null: false
       t.string :uri, null: false
-      t.string :origin_created_by, null: false
+      t.string :origin_created_by
       t.string :origin_created_at, null: false
       t.string :origin_updated_at, null: false
 
