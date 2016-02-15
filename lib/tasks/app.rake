@@ -16,10 +16,34 @@ end
 
 namespace :batch do
 
+  namespace :delete do
+
+    desc "Delete local records removed from upstream via remote api connection"
+    task :api => :environment do |t, args|
+      app_uris = CollectionObject.pluck(:uri)
+      api_uris = []
+      log      = TimedLogger.new('batch_delete_api')
+      log.start
+
+      COLLECTIONSPACE_CLIENT.all('collectionobjects') do |record|
+        api_uris << record["uri"]
+      end
+
+      del_uris = app_uris - api_uris
+      log.info "No local records to delete" if del_uris.empty?
+      del_uris.each do |uri|
+        CollectionObject.where(uri: uri).first.destroy
+        log.info "Deleted:\t#{uri}"
+      end
+      log.stop
+    end
+
+  end
+
   namespace :import do
 
     # bundle exec rake batch:import:api
-    desc "Import records via remote api connection"
+    desc "Import records from upstream via remote api connection"
     task :api, [:record_type, :path, :key, :since] => :environment do |t, args|
       record_type = args[:record_type] || 'CollectionObject'
       klass       = record_type.camelize.constantize
@@ -85,13 +109,13 @@ namespace :batch do
     end
 
     # bundle exec rake batch:import:csv[records.csv]
-    desc "Import records via csv dump"
+    desc "Import records from upstream via csv dump"
     task :csv, [:csv] => :environment do
       puts "TODO"
     end
 
     # bundle exec rake batch:import:seed
-    desc "Seed records via remote api connection"
+    desc "Seed records from upstream via remote api connection"
     task :seed => :environment do
       Rake::Task["batch:import:api"].invoke('CollectionObject', 'collectionobjects', 'object_number', '1900-01-01')
       Rake::Task["batch:import:api"].reenable
@@ -104,7 +128,7 @@ namespace :batch do
     relation_options = { query: { sbjType: "CollectionObject", objType: "Media", wf_deleted: "false" } }
 
     # bundle exec rake batch:related_media:sync
-    desc "Import collectionobject and media relationships data"
+    desc "Import collectionobject and media relationships data via remote api connection"
     task :sync => :environment do
       log = TimedLogger.new('related_media_sync')
       log.start
