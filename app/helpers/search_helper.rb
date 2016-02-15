@@ -9,6 +9,6 @@ module SearchHelper
   end
 
   def query_placeholder_text
-    (params[:query].nil? or params[:query].blank?) ? "Enter search terms ..." : params[:query]
+    (params[:query].nil? or params[:query].blank?) ? t("search.placeholder") : params[:query]
   end
 end

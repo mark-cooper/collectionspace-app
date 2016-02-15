@@ -9,15 +9,15 @@
       <% end %>
     </div>
     <div class="col-md-6 col-md-pull-6 record-detail">
-      <h1><%= @collectionobject.object_number %><%= link_to "Refresh", { action: "update", id: @collectionobject.slug }, method: :put, class: "btn btn-info refresh" %></h1>
-      <h3>Record details</h3>
+      <h1><%= @collectionobject.object_number %><%= link_to t('ui.refresh'), { action: "update", id: @collectionobject.slug }, method: :put, class: "btn btn-info refresh" %></h1>
+      <h3><%= t('collectionobject.page_title') %></h3>
       <dl class="dl-horizontal record-attributes">
         <% @viewable_fields.each do |attribute| %>
           <dt><%= t "collectionobject.#{attribute}" %></dt>
           <dd><%= field_to_s(@collectionobject, attribute) %></dd>
         <% end %>
       </dl>
-      <%= button_to "Return", root_path, method: 'get', class: "btn btn-primary" %>
+      <%= button_to t('ui.return'), root_path, method: 'get', class: "btn btn-primary" %>
     </div>
   </div>
 </div>

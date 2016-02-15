@@ -2,11 +2,11 @@
   <%= render 'site/search' %>
 </div>
 <%= paginate @collectionobjects, :window => 1 %>
-<h3 class="text-center">Search results</h3>
+<h3 class="text-center"><%= t('search.page_title') %></h3>
 <% if @collectionobjects.count == 0 %>
 <div class="container-fluid row records">
   <div class="col-md-12">
-    <p class="lead text-center">No results found.</p>
+    <p class="lead text-center"><%= t('search.no_results') %></p>
   </div>
 </div>
 <% else %>

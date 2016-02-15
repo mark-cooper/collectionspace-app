@@ -2,7 +2,7 @@
   <%= render 'site/search' %>
 </div>
 <%= paginate @collectionobjects, :window => 1 %>
-<h3 class="text-center">Cataloging records</h3>
+<h3 class="text-center"><%= t('collectionobjects.page_title') %></h3>
 <div class="container-fluid row records">
   <%= render 'records' %>
 </div>
