@@ -81,12 +81,16 @@ h3 {
   border-collapse: collapse;
 }
 
+.record {
+  padding-top: 0.5em;
+}
+
 .record-attributes, .refresh {
   margin-left: 2em;
 }
 
-.record {
-  padding-top: 0.5em;
+.record-image img {
+  margin-top: 1em;
 }
 
 .search-terms {

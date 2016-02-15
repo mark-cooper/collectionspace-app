@@ -5,7 +5,7 @@
       <% if @collectionobject.has_remote_image? %>
         <img class="pull-right img-responsive img-thumbnail" src="data:<%= @collectionobject.thumbnail_content_type %>>;base64,<%= @collectionobject.remote_image %>"/>
       <% else %>
-        <%= image_tag @collectionobject.thumbnail(:small), class: 'pull-right' %>
+        <%= image_tag @collectionobject.thumbnail(:small), class: 'pull-right img-responsive img-thumbnail' %>
       <% end %>
     </div>
     <div class="col-md-6 col-md-pull-6 record-detail">
