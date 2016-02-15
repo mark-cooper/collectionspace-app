@@ -68,6 +68,17 @@ docker exec -it collectionspace-app-app1 bundle exec rake batch:related_media:sy
 docker exec -it collectionspace-app-app1 bundle exec rake batch:import:seed
 ```
 
+Cron jobs:
+
+```
+# refresh cataloging and media records relationship data
+0 0 * * * /usr/bin/docker exec -it collectionspace-app-app1 bundle exec rake batch:related_media:sync
+# delete local records that were removed from upstream collectionspace
+0 1 * * * /usr/bin/docker exec -it collectionspace-app-app1 bundle exec rake batch:delete:api
+# import or update records created or updated yesterday
+0 2 * * * /usr/bin/docker exec -it collectionspace-app-app1 bundle exec rake batch:import:api
+```
+
 Contributing
 ---
 
