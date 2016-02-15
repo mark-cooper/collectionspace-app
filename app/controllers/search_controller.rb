@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   def index
     query = params[:query]
-    if params[:field] == "all"
+    if params[:field] == "all" or query.blank?
       @collectionobjects = CollectionObject.search(query).page params[:page]
     else
       field = params[:field]

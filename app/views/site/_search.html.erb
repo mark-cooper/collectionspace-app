@@ -1,6 +1,6 @@
 <%= form_tag("/search", method: "get", class: 'form-inline') do %>
   <div class="form-group">
-    <%= select_tag(:field, options_for_select(@searchable_attributes.collect{ |a| [t("collectionobject.#{a.field}"), a.field] }.unshift([ "All", "all" ])), class: 'form-control') %>
+    <%= select_tag(:field, options_for_select(get_searchable_attributes_for_select, get_searchable_attribute_default), class: 'form-control') %>
   </div>
   <div class="form-group">
     <div class="input-group">
