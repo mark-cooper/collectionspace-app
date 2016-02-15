@@ -14,7 +14,7 @@
       <dl class="dl-horizontal record-attributes">
         <% @viewable_fields.each do |attribute| %>
           <dt><%= t "collectionobject.#{attribute}" %></dt>
-          <dd><%= @collectionobject.send(attribute.to_sym) %></dd>
+          <dd><%= field_to_s(@collectionobject, attribute) %></dd>
         <% end %>
       </dl>
       <%= button_to "Return", root_path, method: 'get', class: "btn btn-primary" %>
