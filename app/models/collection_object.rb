@@ -6,7 +6,7 @@ class CollectionObject < ActiveRecord::Base
   paginates_per 10
 
   friendly_id :slug_object_number, use: [:slugged, :finders]
-  has_attached_file :thumbnail, default_url: "/images/:style/placeholder.png"
+  has_attached_file :thumbnail, default_url: Rails.application.config.paperclip_default_url
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
 
   pg_search_scope(
@@ -36,10 +36,18 @@ class CollectionObject < ActiveRecord::Base
     thumbnail.exists?
   end
 
-  def remote_image
+  def remote_image(size = :small)
     raise "Record has no associated media." unless has_remote_image?
-    Rails.cache.fetch("#{cache_key}/remote_image", expires_in: 24.hours) do
-      Base64.encode64(COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/Small/content").body)
+    size = size.to_s.capitalize
+    begin
+      Rails.cache.fetch("#{cache_key}/remote_image/#{size}", expires_in: 24.hours) do
+        Base64.encode64(COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/#{size}/content").body)
+      end
+    rescue
+      Rails.cache.fetch("#{cache_key}/remote_image/placeholder") do
+        path = Rails.public_path.join(Rails.application.config.paperclip_small_placeholder_path)
+        Base64.encode64( File.read(path) )
+      end
     end
   end
 

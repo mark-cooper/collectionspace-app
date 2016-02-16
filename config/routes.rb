@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   root 'collection_objects#index'
-  resources :records, controller: 'collection_objects', only: [:index, :show, :update], as: 'records'
+  resources :records, controller: 'collection_objects', only: [:index, :show, :update], as: 'records' do
+    member do
+      get 'fullsize'
+    end
+  end
   get 'search' => 'search#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

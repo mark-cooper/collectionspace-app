@@ -3,12 +3,12 @@
   <div class="col-md-6 records-row">
     <div class="row records-detail">
       <div class="col-md-6 col-md-push-6">
-        <%= link_to image_tag(record.thumbnail.url, class: 'pull-right img-responsive img-thumbnail'), record_path(record) %>
+        <%= link_to image_tag(record.thumbnail.url, class: 'pull-right img-responsive img-thumbnail'), record_path(record, { from_page: @page }) %>
       </div>
       <div class="col-md-6 col-md-pull-6">
         <dl>
           <dt><%= t 'collectionobject.object_number' %></dt>
-          <dd><%= link_to record.object_number, record_path(record), class: "lead" %></dd>
+          <dd><%= link_to record.object_number, record_path(record, { from_page: @page }), class: "lead" %></dd>
           <dt><%= t 'collectionobject.title' %></dt>
           <dd><%= record.title %></dd>
         </dl>

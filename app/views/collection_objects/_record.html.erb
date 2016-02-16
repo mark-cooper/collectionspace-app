@@ -3,7 +3,9 @@
   <div class="row record-image">
     <div class="col-md-6 col-md-push-6">
       <% if @collectionobject.has_remote_image? %>
-        <img class="pull-right img-responsive img-thumbnail" src="data:<%= @collectionobject.thumbnail_content_type %>>;base64,<%= @collectionobject.remote_image %>"/>
+        <a href="<%= fullsize_record_path(@collectionobject) %>?from_page=<%= @page %>">
+          <%= render partial: 'image', locals: { img_class: "pull-right img-responsive img-thumbnail", size: :small } %>
+        </a>
       <% else %>
         <%= image_tag @collectionobject.thumbnail(:small), class: 'pull-right img-responsive img-thumbnail' %>
       <% end %>
@@ -17,7 +19,7 @@
           <dd><%= field_to_s(@collectionobject, attribute) %></dd>
         <% end %>
       </dl>
-      <%= button_to t('ui.return'), root_path, method: 'get', class: "btn btn-primary" %>
+      <%= button_to t('ui.return'), root_path, method: 'get', class: "btn btn-primary", params: { page: @page } %>
     </div>
   </div>
 </div>

@@ -1,0 +1,10 @@
+<div class="container-fluid row search">
+  <%= render 'site/search' %>
+</div>
+<div class="container-fluid row record fullsize">
+  <% if @collectionobject.has_remote_image? %>
+    <%= render partial: 'image', locals: { img_class: "img-responsive img-thumbnail", size: :original } %>
+  <% end %>
+</div>
+<br/>
+<%= button_to t('ui.return'), record_path(@collectionobject), method: 'get', class: "btn btn-primary", params: { from_page: @page } %>
