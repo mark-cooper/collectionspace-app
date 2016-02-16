@@ -15,8 +15,8 @@
       <h3><%= t('collectionobject.page_title') %></h3>
       <dl class="dl-horizontal record-attributes">
         <% @viewable_fields.each do |attribute| %>
-          <dt><%= t "collectionobject.#{attribute}" %></dt>
-          <dd><%= field_to_s(@collectionobject, attribute) %></dd>
+          <dt><%= attribute[1] %></dt>
+          <dd><%= field_to_s(@collectionobject, attribute[0]) %></dd>
         <% end %>
       </dl>
       <%= button_to t('ui.return'), root_path, method: 'get', class: "btn btn-primary", params: { page: @page } %>

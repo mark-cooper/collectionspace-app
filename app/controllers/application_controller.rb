@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def set_searchable_attributes
-    @searchable_attributes = AttributeMap.where(record_type: 'collectionobject', searchable: true).order(:field)
+    @searchable_attributes = AttributeMap.where(record_type: 'collectionobject', searchable: true).order(:label)
   end
 
   def set_viewable_fields
-    @viewable_fields = AttributeMap.where(viewable: true).pluck(:field)
+    @viewable_fields = AttributeMap.where(viewable: true).pluck(:field, :label)
   end
 end

@@ -21,34 +21,11 @@
 
 en:
   collectionobject:
-    brief_description: Description
-    content_concepts: About (subjects)
-    content_persons: About (people)
-    dimension_summary: Dimensions
-    material_group: Materials
-    object_name: Object Name
-    object_number: Object Number
-    object_production_organization_group: Producers (corporate)
-    object_production_people_group: Producers (person)
-    object_production_person_group: Producers (group)
-    origin_created_by: Created By
-    origin_created_at: Created At
-    origin_updated_at: Updated At
-    responsible_department: Department
     page_title: Record details
-    physical_description: Condition
-    technique_group: Techniques
-    title: Title
-    title_type: Title Type
   collectionobjects:
     page_title: Cataloging records
   relationship:
-    subject_csid: Subject CSID
-    subject_type: Subject Type
-    subject_uri: Subject URI
-    object_csid: Object CSID
-    object_type: Object Type
-    object_uri: Object URI
+    page_title: Relationships
   search:
     no_results: No results found.
     placeholder: Enter search terms ...

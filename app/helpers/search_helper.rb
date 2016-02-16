@@ -1,6 +1,6 @@
 module SearchHelper
   def get_searchable_attributes_for_select
-    @searchable_attributes.collect{ |a| [t("collectionobject.#{a.field}"), a.field] }
+    @searchable_attributes.collect{ |a| [ a.label, a.field] }
       .unshift([ "All", "all" ])
   end
 

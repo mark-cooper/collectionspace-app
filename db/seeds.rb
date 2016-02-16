@@ -10,6 +10,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'subject_csid',
+    label: 'Subject CSID',
     key: 'subject',
     nested_key: 'csid',
     with: nil,
@@ -19,6 +20,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'subject_type',
+    label: 'Subject Type',
     key: 'subject',
     nested_key: 'documentType',
     with: nil,
@@ -28,6 +30,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'subject_uri',
+    label: 'Subject URI',
     key: 'subject',
     nested_key: 'uri',
     with: nil,
@@ -37,6 +40,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'object_csid',
+    label: 'Object CSID',
     key: 'object',
     nested_key: 'csid',
     with: nil,
@@ -46,6 +50,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'object_type',
+    label: 'Object Type',
     key: 'object',
     nested_key: 'documentType',
     with: nil,
@@ -55,6 +60,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'relationship',
     field: 'object_uri',
+    label: 'Object URI',
     key: 'object',
     nested_key: 'uri',
     with: nil,
@@ -64,6 +70,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'object_name',
+    label: 'Object Name',
     key: 'collectionobjects_common',
     nested_key: 'objectName',
     with: nil,
@@ -73,6 +80,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'object_number',
+    label: 'Object Number',
     key: 'collectionobjects_common',
     nested_key: 'objectNumber',
     with: nil,
@@ -82,6 +90,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'responsible_department',
+    label: 'Department',
     key: 'collectionobjects_common',
     nested_key: 'responsibleDepartment',
     with: nil,
@@ -91,6 +100,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'title',
+    label: 'Title',
     key: 'collectionobjects_common',
     nested_key: 'title',
     with: nil,
@@ -100,6 +110,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'title_type',
+    label: 'Title Type',
     key: 'collectionobjects_common',
     nested_key: 'titleType',
     with: nil,
@@ -109,6 +120,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'display_date',
+    label: 'Date',
     key: 'collectionobjects_common',
     nested_key: 'dateDisplayDate',
     with: nil,
@@ -118,6 +130,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'brief_description',
+    label: 'Description',
     key: 'collectionobjects_common',
     nested_key: 'briefDescription',
     with: nil,
@@ -127,6 +140,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'content_persons',
+    label: 'About (people)',
     key: 'collectionobjects_common',
     nested_key: 'contentPersons',
     with: 'contentPerson',
@@ -136,6 +150,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'content_concepts',
+    label: 'About (subjects)',
     key: 'collectionobjects_common',
     nested_key: 'contentConcepts',
     with: 'contentConcept',
@@ -145,6 +160,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'physical_description',
+    label: 'Condition',
     key: 'collectionobjects_common',
     nested_key: 'physicalDescription',
     with: nil,
@@ -154,6 +170,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'dimension_summary',
+    label: 'Dimenions',
     key: 'collectionobjects_common',
     nested_key: 'dimensionSummary',
     with: nil,
@@ -163,6 +180,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'material_group',
+    label: 'Materials',
     key: 'collectionobjects_common',
     nested_key: 'materialGroup',
     with: 'materialName',
@@ -172,6 +190,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'technique_group',
+    label: 'Techniques',
     key: 'collectionobjects_common',
     nested_key: 'techniqueGroup',
     with: 'technique',
@@ -181,6 +200,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'object_production_organization_group',
+    label: 'Producers (corporate)',
     key: 'collectionobjects_common',
     nested_key: 'objectProductionOrganizationGroup',
     with: 'objectProductionOrganization',
@@ -190,6 +210,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'object_production_people_group',
+    label: 'Producers (group)',
     key: 'collectionobjects_common',
     nested_key: 'objectProductionPeopleGroup',
     with: 'objectProductionPeople',
@@ -199,6 +220,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'object_production_person_group',
+    label: 'Producers (person)',
     key: 'collectionobjects_common',
     nested_key: 'objectProductionPersonGroup',
     with: 'objectProductionPerson',
@@ -208,6 +230,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'ref_name',
+    label: 'Reference Name',
     key: 'collectionspace_core',
     nested_key: 'refName',
     with: nil,
@@ -217,6 +240,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'uri',
+    label: 'URI',
     key: 'collectionspace_core',
     nested_key: 'uri',
     with: nil,
@@ -226,6 +250,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'origin_created_by',
+    label: 'Created By',
     key: 'collectionspace_core',
     nested_key: 'createdBy',
     with: nil,
@@ -235,6 +260,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'origin_created_at',
+    label: 'Created At',
     key: 'collectionspace_core',
     nested_key: 'createdAt',
     with: nil,
@@ -244,6 +270,7 @@ ATTRIBUTE_MAP = [
   {
     record_type: 'collectionobject',
     field: 'origin_updated_at',
+    label: 'Updated At',
     key: 'collectionspace_core',
     nested_key: 'updatedAt',
     with: nil,
