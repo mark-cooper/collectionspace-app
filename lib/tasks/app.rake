@@ -67,7 +67,7 @@ namespace :batch do
       # TODO: check search result status first.
 
       COLLECTIONSPACE_CLIENT.search_all(query) do |item|
-        record     = COLLECTIONSPACE_CLIENT.get(item["uri"]).parsed
+        record     = COLLECTIONSPACE_CLIENT.get("/#{item["uri"]}").parsed
         attributes = COLLECTIONSPACE_CLIENT.to_object(record, attribute_map)
 
         # create or update object
@@ -86,7 +86,7 @@ namespace :batch do
           # PROCESS RELATED MEDIA
           related = Relationship.where(subject_uri: attributes["uri"]).first
           if related and object.respond_to?(:thumbnail) and !object.thumbnail.exists?
-            blob_url = "#{related[:object_uri]}/blob"
+            blob_url = "/#{related[:object_uri]}/blob"
             if COLLECTIONSPACE_CLIENT.get(blob_url).status_code == 200
               object.blob_url = blob_url
               thumbnail = COLLECTIONSPACE_CLIENT.get("#{blob_url}/derivatives/Thumbnail/content")
