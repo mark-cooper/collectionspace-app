@@ -22,7 +22,7 @@ app1:
     COLLECTIONSPACE-APP_DATABASE_NAME: "collectionspace-app-app1"
     COLLECTIONSPACE-APP_DATABASE_USERNAME: "csadmin"
     COLLECTIONSPACE-APP_DATABASE_PASSWORD: "123456"
-    COLLECTIONSPACE_BASE_URI: "http://demo.collectionspace.org:8180/cspace-services"
+    COLLECTIONSPACE_BASE_URI: "http://core.collectionspace.org/cspace-services"
     COLLECTIONSPACE_USERNAME: "reader@core.collectionspace.org"
     COLLECTIONSPACE_PASSWORD: "reader"
     PORT: "3000"
